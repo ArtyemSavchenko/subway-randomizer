@@ -1,0 +1,6 @@
+@import 'normalize';
+@import './vendor/simplify.css';
+
+:root {
+  font-family: sans-serif;
+}
