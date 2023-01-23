@@ -1,4 +1,4 @@
-import { IGetRandomEl, IGetRandomSubarray } from './randomizer.types';
+import { IGetRandomEl, IGetRandomSubarray } from "types/randomizer";
 
 export const getRandomEl: IGetRandomEl = (array) => {
   const length = array.length;
@@ -9,17 +9,19 @@ export const getRandomEl: IGetRandomEl = (array) => {
 
 export const getRandomSubarray: IGetRandomSubarray = (array, newLength) => {
   if (newLength >= array.length) {
-    console.error('Длина нового массива не может превышать длину исходного.');
+    console.warn('Длина нового массива не может превышать длину исходного.');
     return array;
   }
 
   const randomizedArray = [];
+  let tempArray = [...array];
 
   while (newLength > 0) {
-    const newEl = getRandomEl(array);
+    const newEl = getRandomEl(tempArray);
     randomizedArray.push(newEl);
 
-    array = array.filter((el) => el !== newEl);
+    tempArray = [...tempArray.filter((el) => el !== newEl)];
+
     newLength--;
   }
 
