@@ -1,4 +1,4 @@
-import { ISandwich } from 'types/sandwich';
+import { ISandwich, ISandwichOption } from 'types/sandwich';
 
 export const sandwiches: ISandwich[] = [
   {
@@ -30,21 +30,21 @@ export const sandwiches: ISandwich[] = [
     description:
       'Два вкуса ломтиков индейки и ветчины гармонично сочетаются в одном сэндвиче на свежевыпеченном хлебе с овощами и соусом на выбор.',
     price: 455,
-    popular: true,
+    badge: 'популярный',
   },
   {
     name: 'Острый Итальянский',
     description:
       'Классический сэндвич, приготовленный из кусочков пряной пепперони и салями на свежевыпеченном хлебе с овощами и соусом на выбор.',
     price: 510,
-    popular: true,
+    badge: 'популярный',
   },
   {
     name: 'Итальянский Бмт',
     description:
       'Оригинальная комбинация салями, пикантной пепперони и ветчины в сочетании со свежими овощами и соусом на выбор на свежевыпеченном хлебе.',
     price: 510,
-    popular: true,
+    badge: 'популярный',
   },
   {
     name: 'Куриная грудка',
@@ -57,7 +57,7 @@ export const sandwiches: ISandwich[] = [
     description:
       'Мясо тунца смешанное с легким майонезом на свежевыпеченном хлебе с овощами и соусом на выбор.',
     price: 535,
-    popular: true,
+    badge: 'популярный',
   },
   {
     name: 'Сабвэй Мелт',
@@ -70,7 +70,7 @@ export const sandwiches: ISandwich[] = [
     description:
       'Кусочки курицы под соусом терияки в сочетании со свежими овощами и соусом на выбор на свежевыпеченном хлебе',
     price: 535,
-    popular: true,
+    badge: 'популярный',
   },
   {
     name: 'Курица и Бекон Мелт',
@@ -98,20 +98,17 @@ export const sandwiches: ISandwich[] = [
   },
 ];
 
-export const options = [
+export const sandwichOptions: ISandwichOption[] = [
   {
     paid: false,
-    required: true,
+    isRequired: true,
     maxCount: 1,
     name: 'На выбор',
-    values: [
-      { name: 'Жарить' },
-      { name: 'Не жарить' },
-    ],
+    values: [{ name: 'Жарить' }, { name: 'Не жарить' }],
   },
   {
     paid: false,
-    required: true,
+    isRequired: true,
     maxCount: 1,
     name: 'Хлеб',
     values: [
@@ -125,7 +122,7 @@ export const options = [
   },
   {
     paid: false,
-    required: false,
+    isRequired: false,
     maxCount: 8,
     name: 'Овощи',
     values: [
@@ -142,17 +139,14 @@ export const options = [
   },
   {
     paid: false,
-    required: true,
+    isRequired: true,
     maxCount: 1,
     name: 'Сыр',
-    values: [
-      { name: 'С сыром' },
-      { name: 'Без сыра' },
-    ],
+    values: [{ name: 'С сыром' }, { name: 'Без сыра' }],
   },
   {
     paid: false,
-    required: false,
+    isRequired: false,
     maxCount: 3,
     name: 'Соус',
     values: [
@@ -170,7 +164,7 @@ export const options = [
   },
   {
     paid: false,
-    required: false,
+    isRequired: false,
     maxCount: 4,
     name: 'Специи',
     values: [
@@ -182,17 +176,17 @@ export const options = [
   },
   {
     paid: true,
-    required: false,
+    isRequired: false,
     maxCount: 9,
     name: 'Дополнительные начинки',
     values: [
-      { name: 'Жареный лук 20 г', price: 50 },
-      { name: 'Крем-чиз 80 г', price: 90 },
-      { name: 'Пепперони 50 г', price: 90 },
-      { name: 'Омлет 172 г', price: 192 },
-      { name: 'Сыр 20 г', price: 70 },
-      { name: 'Салями 50 г', price: 90 },
-      { name: 'Бекон 48 г', price: 110 },
+      { name: 'Жареный лук 20г', price: 50 },
+      { name: 'Крем-чиз 80г', price: 90 },
+      { name: 'Пепперони 50г', price: 90 },
+      { name: 'Омлет 172г', price: 192 },
+      { name: 'Сыр 20г', price: 70 },
+      { name: 'Салями 50г', price: 90 },
+      { name: 'Бекон 48г', price: 110 },
     ],
   },
 ];
