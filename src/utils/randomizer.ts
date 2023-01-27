@@ -1,31 +1,40 @@
-import { IGetRandomEl, IGetRandomSubarray } from 'types/randomizer';
+const getRandomIndex = (length: number) => Math.floor(Math.random() * length);
 
-export const getRandomEl: IGetRandomEl = (array) => {
+export function getRandomEl<T>(array: T[]): [randomEl: T, arrayWithoutEl: T[]] {
   const length = array.length;
-  const randomIndex = Math.floor(Math.random() * length);
+  const randomIndex = getRandomIndex(length);
 
-  return array[randomIndex];
-};
+  const newArray = [...array];
+  newArray.splice(randomIndex, 1);
 
-export const getRandomSubarray: IGetRandomSubarray = (array, newLength) => {
-  if (newLength >= array.length) {
-    console.warn(
-      'Длина нового массива превышает или равняется длине исходного.'
-    );
-    return array;
+  return [array[randomIndex], newArray];
+}
+
+export function randomizeArr<T>(array: T[]): T[] {
+  const result = [...array];
+
+  result.forEach((el, i) => {
+    const randomIndex = getRandomIndex(result.length);
+    result[i] = result[randomIndex];
+    result[randomIndex] = el;
+  });
+
+  return result;
+}
+
+export function getRandomEls<T>(array: T[], maxLength: number) {
+  const randomizedArr = randomizeArr(array);
+  
+  let iteration = 0;
+  const result = [];
+
+  while (iteration < array.length && iteration < maxLength) {
+    if (Math.random() < 0.5) {
+      result.push(randomizedArr[iteration]);
+    }
+
+    iteration++;
   }
 
-  const randomizedArray = [];
-  let tempArray = [...array];
-
-  while (newLength > 0) {
-    const newEl = getRandomEl(tempArray);
-    randomizedArray.push(newEl);
-
-    tempArray = [...tempArray.filter((el) => el !== newEl)];
-
-    newLength--;
-  }
-
-  return randomizedArray;
-};
+  return result;
+}

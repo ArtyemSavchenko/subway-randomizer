@@ -1,87 +1,57 @@
-import { useReducer, useEffect } from "react";
+import { useReducer, useEffect } from 'react';
 
-import {
-  reducer,
-  switchIsCheckedOption,
-  switchIsCheckedSandwich,
-} from "store/reducer";
-import { ISandwichOption } from "types/sandwich";
+import { reducer, init } from 'store/reducer';
+import { AppDispatch } from 'contexts/AppDispatch';
 
-import SandwichCard from "components/SandwichCard";
-import SandwichOption from "components/SandwichOption";
-
-import {
-  getCheckedEls,
-  getInitialSettingsState,
-  saveInitialSettingsState,
-} from "App.utils";
-import { getRandomEl, getRandomSubarray } from "utils/randomizer";
+import SandwichOption from 'components/SandwichOption/SandwichOption';
+import SandwichCard from 'components/SandwichCard/SandwichCard';
+import { getRandomEl, getRandomEls } from 'utils/randomizer';
+import { ISandwich, ISandwichOption } from 'types/sandwich';
+import { copyDeep } from 'utils/utils';
+import { getRandomSandwich } from 'App.utils';
 
 const App = () => {
   const [{ sandwiches, sandwichOptions }, dispatch] = useReducer(
     reducer,
-    getInitialSettingsState()
+    init()
   );
 
-  useEffect(() => {
-    saveInitialSettingsState({ sandwiches, sandwichOptions });
-  }, [sandwiches, sandwichOptions]);
-
-  const generateSandwich = () => {
-    const names = sandwiches.filter((el) => el.isChecked);
-    const nameOfResultSandwich = getRandomEl(names).name;
-
-    const options = sandwichOptions.reduce((prev, option) => {
-      const newOption = {
-        name: option.name,
-        values: [] as ISandwichOption["values"],
-      };
-      const optionsArray = getCheckedEls(option.values);
-
-      if (option.maxCount === 1) {
-        newOption.values.push(getRandomEl(optionsArray));
-      } else {
-        //TODO вместо 3 подставить needed options
-        newOption.values.push(...getRandomSubarray(optionsArray, 3));
-      }
-
-      return [...prev, newOption];
-    }, [] as any);
-
-    return { name: nameOfResultSandwich, options };
+  const saveConfig = () => {
+    localStorage.setItem(
+      'settings',
+      JSON.stringify({ sandwiches, sandwichOptions })
+    );
   };
 
+  useEffect(() => {
+    saveConfig();
+  }, [sandwiches, sandwichOptions]);
+
   return (
-    <main>
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
-        {sandwiches.map((sandwich) => (
+    <AppDispatch.Provider value={dispatch}>
+      <button onClick={() => getRandomSandwich(sandwiches, sandwichOptions)}>
+        GENERATE
+      </button>
+      {sandwiches.map((sandwich) => {
+        return (
           <SandwichCard
             key={sandwich.name}
-            {...sandwich}
-            onClick={() => dispatch(switchIsCheckedSandwich(sandwich.name))}
+            name={sandwich.name}
+            description={sandwich.description}
+            price={sandwich.price}
+            badge={sandwich.badge}
+            isChecked={sandwich.isChecked}
           />
-        ))}
-      </div>
+        );
+      })}
+
       {sandwichOptions.map((option) => (
-        <SandwichOption
-          key={option.name}
-          {...option}
-          neededCount={option.maxCount}
-          switchOption={(name: string, valueName: string) =>
-            dispatch(switchIsCheckedOption(name, valueName))
-          }
-        />
+        <SandwichOption key={option.optionName} option={option} />
       ))}
 
-      <button
-        onClick={() => {
-          console.dir(generateSandwich());
-        }}
-      >
-        Сгенерировать
-      </button>
-      {/* <p>{newSandwich}</p> */}
-    </main>
+      <button type="button">Сгенерировать</button>
+    </AppDispatch.Provider>
   );
 };
+
 export default App;

@@ -6,11 +6,8 @@ export interface IState {
 }
 
 export interface IAction {
-  type: 'switchIsCheckedSandwich' | 'switchIsCheckedOption';
-  payload?: {
-    name?: string;
-    valueName?: string;
-  };
+  type: 'switchSandwichIsChecked' | 'switchFillingIsChecked';
+  payload?: any;
 }
 
 export type IReducer = (state: IState, action: IAction) => IState;

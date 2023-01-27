@@ -1,9 +1,22 @@
 import { copyDeep } from 'utils/utils';
 import { IAction, IReducer, IState } from './reducer.types';
+import { sandwiches, sandwichOptions } from 'utils/constants';
+
+// export const initialState = { sandwiches, sandwichOptions };
+
+export const init = () => {
+  const settings = localStorage.getItem('settings');
+
+  if (settings) {
+    return JSON.parse(settings);
+  }
+
+  return { sandwiches, sandwichOptions };
+};
 
 export const reducer: IReducer = (state, action) => {
   switch (action.type) {
-    case 'switchIsCheckedSandwich': {
+    case 'switchSandwichIsChecked': {
       const newState = copyDeep<IState>(state);
 
       newState.sandwiches.forEach((sandwich) => {
@@ -15,14 +28,14 @@ export const reducer: IReducer = (state, action) => {
       return newState;
     }
 
-    case 'switchIsCheckedOption': {
+    case 'switchFillingIsChecked': {
       const newState = copyDeep<IState>(state);
 
       newState.sandwichOptions.forEach((option) => {
-        if (option.name === action.payload?.name) {
-          option.values.forEach((value) => {
-            if (value.name === action.payload?.valueName) {
-              value.isChecked = !value.isChecked;
+        if (option.optionName === action.payload?.optionName) {
+          option.fillings.forEach((filling) => {
+            if (filling.fillingName === action.payload?.fillingName) {
+              filling.isChecked = !filling.isChecked;
             }
           });
         }
@@ -36,15 +49,15 @@ export const reducer: IReducer = (state, action) => {
   }
 };
 
-export const switchIsCheckedSandwich = (name: string): IAction => ({
-  type: 'switchIsCheckedSandwich',
+export const switchSandwichIsChecked = (name: string): IAction => ({
+  type: 'switchSandwichIsChecked',
   payload: { name },
 });
 
-export const switchIsCheckedOption = (
-  name: string,
-  valueName: string
+export const switchFillingIsChecked = (
+  optionName: string,
+  fillingName: string
 ): IAction => ({
-  type: 'switchIsCheckedOption',
-  payload: { name, valueName },
+  type: 'switchFillingIsChecked',
+  payload: { optionName, fillingName },
 });
