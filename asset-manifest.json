@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/subway-randomizer/static/css/main.191d77bf.css",
+    "main.js": "/subway-randomizer/static/js/main.ba56ab7d.js",
+    "index.html": "/subway-randomizer/index.html",
+    "main.191d77bf.css.map": "/subway-randomizer/static/css/main.191d77bf.css.map",
+    "main.ba56ab7d.js.map": "/subway-randomizer/static/js/main.ba56ab7d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.191d77bf.css",
+    "static/js/main.ba56ab7d.js"
+  ]
+}
