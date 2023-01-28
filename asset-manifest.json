@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/subway-randomizer/static/css/main.191d77bf.css",
-    "main.js": "/subway-randomizer/static/js/main.ba56ab7d.js",
+    "main.js": "/subway-randomizer/static/js/main.65470dde.js",
     "index.html": "/subway-randomizer/index.html",
     "main.191d77bf.css.map": "/subway-randomizer/static/css/main.191d77bf.css.map",
-    "main.ba56ab7d.js.map": "/subway-randomizer/static/js/main.ba56ab7d.js.map"
+    "main.65470dde.js.map": "/subway-randomizer/static/js/main.65470dde.js.map"
   },
   "entrypoints": [
     "static/css/main.191d77bf.css",
-    "static/js/main.ba56ab7d.js"
+    "static/js/main.65470dde.js"
   ]
 }
