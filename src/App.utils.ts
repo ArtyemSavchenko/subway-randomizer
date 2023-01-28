@@ -92,6 +92,5 @@ export const getRandomSandwich = (
       : ''
   }`.replace(/\s+/g,' ').replace(/\s,/g,',');
 
-  console.log(resultString);
-  
+  return resultString;
 };

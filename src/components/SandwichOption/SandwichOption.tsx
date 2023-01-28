@@ -10,17 +10,19 @@ interface SandwichOptionProps {
 
 const SandwichOption: FC<SandwichOptionProps> = ({ option }) => {
   return (
-    <div>
-      <h3>{option.optionName}</h3>
-      {option.fillings.map((filling) => (
-        <SandwichFilling
-          key={filling.fillingName}
-          optionName={option.optionName}
-          fillingName={filling.fillingName}
-          isChecked={filling.isChecked}
-          price={filling.price}
-        />
-      ))}
+    <div style={{padding: 7}}>
+      <h3 style={{marginBottom: 7}}>{option.optionName}</h3>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+        {option.fillings.map((filling) => (
+          <SandwichFilling
+            key={filling.fillingName}
+            optionName={option.optionName}
+            fillingName={filling.fillingName}
+            isChecked={filling.isChecked}
+            price={filling.price}
+          />
+        ))}
+      </div>
     </div>
   );
 };

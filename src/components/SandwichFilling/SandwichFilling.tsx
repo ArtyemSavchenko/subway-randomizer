@@ -20,7 +20,15 @@ const SandwichFilling: FC<SandwichFillingProps> = ({
   const dispatch = useContext(AppDispatch);
 
   return (
-    <div>
+    <div
+      style={{
+        border: '1px mediumseagreen solid',
+        borderRadius: '1em',
+        padding: '5px 10px',
+        backgroundColor: isChecked ? 'mediumseagreen' : 'transparent',
+        color: isChecked ? '#fff' : '#000',
+      }}
+    >
       <input
         type="checkbox"
         id={id}
@@ -28,8 +36,9 @@ const SandwichFilling: FC<SandwichFillingProps> = ({
         onChange={() =>
           dispatch(switchFillingIsChecked(optionName, fillingName))
         }
+        // style={{ appearance: 'none' }}
       />
-      <label htmlFor={id}>
+      <label htmlFor={id} style={{ cursor: 'pointer' }}>
         {fillingName}
         {price && <span>{` +${price}₽`}</span>}
       </label>
