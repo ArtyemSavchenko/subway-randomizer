@@ -2,11 +2,16 @@ import { FC, useId, useContext } from 'react';
 
 import { AppDispatch } from 'contexts/AppDispatch';
 import { switchFillingIsChecked } from 'store/reducer';
+import {
+  SandwichFillingContainer,
+  SandwichFillingInput,
+  SandwichFillingLabel,
+} from './SandwichFilling.style';
 
-interface SandwichFillingProps {
+export interface SandwichFillingProps {
   optionName: string;
   fillingName: string;
-  isChecked: boolean | undefined;
+  isChecked?: boolean;
   price?: number;
 }
 
@@ -20,29 +25,19 @@ const SandwichFilling: FC<SandwichFillingProps> = ({
   const dispatch = useContext(AppDispatch);
 
   return (
-    <div
-      style={{
-        border: '1px mediumseagreen solid',
-        borderRadius: '1em',
-        padding: '5px 10px',
-        backgroundColor: isChecked ? 'mediumseagreen' : 'transparent',
-        color: isChecked ? '#fff' : '#000',
-      }}
-    >
-      <input
-        type="checkbox"
+    <SandwichFillingContainer>
+      <SandwichFillingInput
         id={id}
         checked={isChecked}
         onChange={() =>
           dispatch(switchFillingIsChecked(optionName, fillingName))
         }
-        // style={{ appearance: 'none' }}
       />
-      <label htmlFor={id} style={{ cursor: 'pointer' }}>
+      <SandwichFillingLabel htmlFor={id}>
         {fillingName}
         {price && <span>{` +${price}₽`}</span>}
-      </label>
-    </div>
+      </SandwichFillingLabel>
+    </SandwichFillingContainer>
   );
 };
 
