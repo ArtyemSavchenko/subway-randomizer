@@ -4,3 +4,8 @@
 :root {
   font-family: sans-serif;
 }
+
+*:focus-visible {
+  outline: 3px solid mediumseagreen;
+  outline-offset: 3px;
+}
