@@ -6,7 +6,7 @@ export const SandwichFillingLabel = styled.label`
   display: block;
   padding: 0.4em 1em;
   pointer-events: none;
-  color: ${(props) => props.theme.palette.txt.main};
+  color: ${(props) => props.theme.palette.text.primary.main};
 `;
 
 const InputCheckBox: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => (
@@ -20,9 +20,11 @@ export const SandwichFillingInput = styled(InputCheckBox)`
   left: 0;
   bottom: 0;
   right: 0;
-  border: 1px solid ${(props) => props.theme.palette.primary.main};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: box-shadow 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   border-radius: 1em;
   cursor: pointer;
+  background-color: ${(props) => props.theme.palette.bg.light};
   z-index: -1;
 
   &:checked {
@@ -30,7 +32,7 @@ export const SandwichFillingInput = styled(InputCheckBox)`
   }
 
   &:checked + ${SandwichFillingLabel} {
-    color: ${(props) => props.theme.palette.txt.alternation};
+    color: ${(props) => props.theme.palette.text.alternation.main};
   }
 `;
 

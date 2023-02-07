@@ -8,7 +8,7 @@ declare module '@mui/material/styles' {
 export type IThemesNames = 'dark' | 'light';
 export type IThemeObject = typeof LIGHT_THEME;
 
-const COMMON_THEME = {
+export const LIGHT_THEME = {
   palette: {
     primary: {
       main: 'hsl(147, 50%, 47%)',
@@ -16,30 +16,39 @@ const COMMON_THEME = {
     secondary: {
       main: 'hsl(207, 90%, 50%)',
     },
-  },
-}
-
-export const LIGHT_THEME = {
-  palette: {
-    ...COMMON_THEME.palette,
-    txt: {
-      main: 'hsl(0, 0%, 20%)',
-      alternation: 'hsl(0, 0%, 100%)',
-      light: 'hsl(0, 0%, 25%)',
+    text: {
+      primary: {
+        main: 'hsl(0, 0%, 20%)',
+        light: 'hsl(0, 0%, 25%)',
+      },
+      alternation: { main: 'hsl(0, 0%, 100%)' },
     },
-    bg: '#fff',
+    bg: {
+      main: 'hsl(0, 100%, 100%)',
+      light: 'hsl(0, 100%, 100%)',
+    },
   },
 };
 
 export const DARK_THEME = {
   palette: {
-    ...COMMON_THEME.palette,
-    txt: {
-      main: 'hsl(0, 0%, 100%)',
-      alternation: 'hsl(0, 0%, 100%)',
-      light: 'hsl(0, 0%, 80%)',
+    primary: {
+      main: 'hsl(147, 50%, 47%)',
     },
-    bg: '#333',
+    secondary: {
+      main: 'hsl(207, 90%, 50%)',
+    },
+    text: {
+      primary: {
+        main: 'hsl(0, 0%, 100%)',
+        light: 'hsl(0, 0%, 80%)',
+      },
+      alternation: { main: 'hsl(0, 0%, 100%)' },
+    },
+    bg: {
+      main: 'hsl(0, 0%, 13%)',
+      light: 'hsl(0, 0%, 20%)',
+    },
   },
 };
 

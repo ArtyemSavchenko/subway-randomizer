@@ -4,6 +4,13 @@ import { AppDispatch } from 'contexts/AppDispatch';
 
 import { ISandwich } from 'types/sandwich';
 import { switchSandwichIsChecked } from 'store/reducer';
+import {
+  SandwichCardCB,
+  SandwichCardContainer,
+  SandwichCardHeading,
+  SandwichCardLabel,
+  SandwichCardPrice,
+} from './SandwichCard.styles';
 
 const SandwichCard: FC<ISandwich> = ({
   name,
@@ -16,30 +23,17 @@ const SandwichCard: FC<ISandwich> = ({
   const dispatch = useContext(AppDispatch);
 
   return (
-    <label
-      htmlFor={id}
-      style={{
-        margin: 5,
-        padding: 7,
-        border: 'solid mediumseagreen 1px',
-        backgroundColor: isChecked ? 'mediumseagreen' : 'transparent',
-        color: isChecked ? '#fff' : '#000',
-        borderRadius: 7,
-        cursor: 'pointer',
-      }}
-    >
-      <input
-        type="checkbox"
+    <SandwichCardContainer>
+      <SandwichCardCB
         id={id}
         checked={isChecked}
         onChange={() => dispatch(switchSandwichIsChecked(name))}
-        // style={{appearance: 'none'}}
       />
-      {/* {badge && <p style={{ background: 'cornFlowerBlue' }}>{badge}</p>} */}
-      <h2>{name}</h2>
-      {/* <p>{description}</p> */}
-      <p>{`${price}₽`}</p>
-    </label>
+      <SandwichCardLabel htmlFor={id}>
+        <SandwichCardHeading>{name}</SandwichCardHeading>
+        <SandwichCardPrice>{`${price}₽`}</SandwichCardPrice>
+      </SandwichCardLabel>
+    </SandwichCardContainer>
   );
 };
 

@@ -10,7 +10,8 @@ import SandwichCard from 'components/SandwichCard/SandwichCard';
 import ThemeSwitcher from 'components/ThemeSwitcher/ThemeSwitcher';
 
 import { getRandomSandwich } from 'App.utils';
-import { AppContainer } from 'App.styles';
+import { SandwichCardContainer } from 'App.styles';
+import { AppGlobalStyles, SectionContainer } from 'styles/globalStyles';
 
 const App = () => {
   const [themeName, setThemeName] = useState<IThemesNames>('light');
@@ -48,7 +49,7 @@ const App = () => {
   useLayoutEffect(() => {
     const savedTheme = localStorage.getItem('theme') as IThemesNames;
 
-    if (savedTheme) {      
+    if (savedTheme) {
       return setThemeName(savedTheme);
     }
 
@@ -59,61 +60,57 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {    
-    setThemeObject(getTheme(themeName)); 
+  useEffect(() => {
+    setThemeObject(getTheme(themeName));
   }, [themeName]);
 
   return (
     <AppDispatch.Provider value={dispatch}>
       <ThemeProvider theme={themeObject}>
-        <AppContainer>
-        <ThemeSwitcher currentTheme={themeName} switchTheme={switchTheme}/>
+        <AppGlobalStyles />
 
-          <div style={{ maxWidth: 900, margin: '0 auto' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-              {sandwiches.map((sandwich) => {
-                return (
-                  <SandwichCard
-                    key={sandwich.name}
-                    {...sandwich}
-                  />
-                );
-              })}
-            </div>
+        <ThemeSwitcher currentTheme={themeName} switchTheme={switchTheme} />
 
-            {sandwichOptions.map((option) => (
-              <SandwichOption key={option.optionName} option={option} />
-            ))}
+        <SandwichCardContainer>
+          {sandwiches.map((sandwich) => {
+            return <SandwichCard key={sandwich.name} {...sandwich} />;
+          })}
+        </SandwichCardContainer>
 
-            <div style={{ display: 'grid', placeContent: 'center' }}>
-              <button
-                style={{
-                  padding: '1em 2em',
-                  borderRadius: '2em',
-                  backgroundColor: 'tomato',
-                  color: '#fff',
-                  justifySelf: 'center',
-                  margin: '2em',
-                }}
-                onClick={() =>
-                  setGeneratedSandwich(
-                    getRandomSandwich(sandwiches, sandwichOptions)
-                  )
-                }
-              >
-                GENERATE
-              </button>
-              <p
-                style={{
-                  maxWidth: 768,
-                  minHeight: 70,
-                }}
-              >
-                {generatedSandwich}
-              </p>
-            </div>
-          </div>
-        </AppContainer>
+        <SectionContainer>
+          {sandwichOptions.map((option) => (
+            <SandwichOption key={option.optionName} option={option} />
+          ))}
+        </SectionContainer>
+
+        <div style={{ display: 'grid', placeContent: 'center' }}>
+          <button
+            style={{
+              padding: '1em 2em',
+              borderRadius: '2em',
+              backgroundColor: 'tomato',
+              color: '#fff',
+              justifySelf: 'center',
+              margin: '2em',
+            }}
+            onClick={() =>
+              setGeneratedSandwich(
+                getRandomSandwich(sandwiches, sandwichOptions)
+              )
+            }
+          >
+            GENERATE
+          </button>
+
+          <p
+            style={{
+              maxWidth: 768,
+              minHeight: 70,
+            }}
+          >
+            {generatedSandwich}
+          </p>
+        </div>
       </ThemeProvider>
     </AppDispatch.Provider>
   );

@@ -3,7 +3,7 @@ import { mediaHover } from 'utils/styles';
 
 export const ThemeSwitcherButton = styled.button`
   background-color: transparent;
-  color: ${({ theme }) => theme.palette.txt.main};
+  color: ${({ theme }) => theme.palette.text.primary.main};
   text-decoration: underline dotted;
   border-radius: 1em;
 

@@ -1,7 +1,9 @@
 import styled from '@emotion/styled/macro';
 
-export const AppContainer = styled.div`
-  min-height: 100vh;
-  width: 100%;
-  background-color: ${(props) => props.theme.palette.bg};
+import { SectionContainer } from 'styles/globalStyles';
+
+export const SandwichCardContainer = styled(SectionContainer)`
+  display: grid;
+  grid-template-columns:  repeat(auto-fit, minmax(200px, auto));
+  gap: 10px;
 `;
