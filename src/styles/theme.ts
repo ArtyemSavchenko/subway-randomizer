@@ -8,14 +8,24 @@ declare module '@mui/material/styles' {
 export type IThemesNames = 'dark' | 'light';
 export type IThemeObject = typeof LIGHT_THEME;
 
-export const LIGHT_THEME = {
+const COMMON_THEME = {
   palette: {
     primary: {
       main: 'hsl(147, 50%, 47%)',
     },
+    secondary: {
+      main: 'hsl(207, 90%, 50%)',
+    },
+  },
+}
+
+export const LIGHT_THEME = {
+  palette: {
+    ...COMMON_THEME.palette,
     txt: {
-      main: '#333',
-      alternation: '#fff',
+      main: 'hsl(0, 0%, 20%)',
+      alternation: 'hsl(0, 0%, 100%)',
+      light: 'hsl(0, 0%, 25%)',
     },
     bg: '#fff',
   },
@@ -23,12 +33,11 @@ export const LIGHT_THEME = {
 
 export const DARK_THEME = {
   palette: {
-    primary: {
-      main: 'hsl(147, 50%, 47%)',
-    },
+    ...COMMON_THEME.palette,
     txt: {
-      main: '#fff',
-      alternation: '#fff',
+      main: 'hsl(0, 0%, 100%)',
+      alternation: 'hsl(0, 0%, 100%)',
+      light: 'hsl(0, 0%, 80%)',
     },
     bg: '#333',
   },

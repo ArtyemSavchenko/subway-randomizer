@@ -6,6 +6,6 @@
 }
 
 *:focus-visible {
-  outline: 3px solid mediumseagreen;
-  outline-offset: 3px;
+  outline: 2px solid mediumseagreen;
+  outline-offset: 4px;
 }

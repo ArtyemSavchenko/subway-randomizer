@@ -7,6 +7,7 @@ import { getTheme, IThemeObject, IThemesNames } from 'styles/theme';
 
 import SandwichOption from 'components/SandwichOption/SandwichOption';
 import SandwichCard from 'components/SandwichCard/SandwichCard';
+import ThemeSwitcher from 'components/ThemeSwitcher/ThemeSwitcher';
 
 import { getRandomSandwich } from 'App.utils';
 import { AppContainer } from 'App.styles';
@@ -66,7 +67,7 @@ const App = () => {
     <AppDispatch.Provider value={dispatch}>
       <ThemeProvider theme={themeObject}>
         <AppContainer>
-          <button onClick={switchTheme}>{themeName}</button>
+        <ThemeSwitcher currentTheme={themeName} switchTheme={switchTheme}/>
 
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <div style={{ display: 'flex', flexWrap: 'wrap' }}>
